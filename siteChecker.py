@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import proxyCreater
 import requests as req
 import os
 import time
@@ -8,6 +9,11 @@ a = domain
 b = site
 """
 
+print("""1. Ручной Прокси *Вы сами вписываете параметры прокси.""")
+print("""2. Авто-прокси *Скрипт сам найдет прокси, если он не найдет прокси то завершит скрипт.""")
+print("""3. Не использовать прокси *Будет использован системный прокси, если системного прокси нет, то запрос будет совершен через ipv4-адрес системы.""")
+print("""Использовать прокси?""")
+proxy = str(input())
 print("""1. Проверка одного сайта, ручной ввод, Пример: 'https://youtube.com' или 'youtube.com'""")
 print("""2. Проверка множества сайтов, нужен файл, который должен находиться в том же каталоге где скрипт, ссылки должны быть разделены пробелом, не использовать для DDOS'а.""")
 method = str(input())
@@ -45,8 +51,26 @@ def siteLinksInFile(a):
 	fileOpen.close()
 	print("fix 1 func " + str(fileLinkList))
 	return fileLinkList
-
-if __name__ == '__main__':
+def main():
+	if proxy == "1":
+		print("Если вводить username не надо, то напишите английскую(n).")
+		proxyUsername = str(input("username: "))
+		print("Если вводить ПАРОЛЬ не надо, то напишите английскую(n).")
+		proxyPassword = str(input("пароль: "))
+		proxyIp = str(input("ip-прокси: "))
+		proxyPort = str(input("порт: "))
+		if proxyUsername == "n" and proxyPassword == "n":
+			os.environ["HTTPS_PROXY"] = f"https://{proxyIp}:{proxyPort}/"
+		elif proxyUsername == "n" or proxyPassword == "n":
+			print("Error!")
+		else:
+			os.environ["HTTPS_PROXY"] = f"https://{proxyUsername}:{proxyPassword}@{proxyIp}:{proxyPort}/"
+	elif proxy == "2":
+		proxyCreater.proxyGenerator()
+	elif proxy == "3":
+		pass
+	else:
+		pass
 	if method == "1":
 		siteLink = input("URL-address ")
 
@@ -69,5 +93,3 @@ if __name__ == '__main__':
 			time.sleep(3)
 	else: 
 		pass
-else:
-	pass
