@@ -53,6 +53,7 @@ def siteLinksInFile(a):
 	return fileLinkList
 def main():
 	if proxy == "1":
+
 		print("Если вводить username не надо, то напишите английскую(n).")
 		proxyUsername = str(input("username: "))
 		print("Если вводить ПАРОЛЬ не надо, то напишите английскую(n).")
@@ -65,31 +66,92 @@ def main():
 			print("Error!")
 		else:
 			os.environ["HTTPS_PROXY"] = f"https://{proxyUsername}:{proxyPassword}@{proxyIp}:{proxyPort}/"
-	elif proxy == "2":
-		proxyCreater.proxyGenerator()
-	elif proxy == "3":
-		pass
-	else:
-		pass
-	if method == "1":
-		siteLink = input("URL-address ")
 
-		if siteHttps not in siteLink:
-			site = str(siteHttps + siteLink)
-		else:
-			site = str(siteLink)
+		if method == "1":
 
-		domainName(site, firstSplit)
-		siteCheckOne(site)
-		print(domain + " Connect: " + siteRequest)
-	elif method == "2":
-		global fileName
-		fileName = input("File Name: ")
-		siteLinksInFile(fileName)
-		for n in range(0, len(fileLinkList)):
-			domainName(fileLinkList[n], firstSplit)
-			siteCheckOne(fileLinkList[n])
+			siteLink = input("URL-address ")
+
+			if siteHttps not in siteLink:
+				site = str(siteHttps + siteLink)
+			else:
+				site = str(siteLink)
+
+			domainName(site, firstSplit)
+			siteCheckOne(site)
 			print(domain + " Connect: " + siteRequest)
-			time.sleep(3)
-	else: 
-		pass
+
+		elif method == "2":
+
+			global fileName
+			fileName = input("File Name: ")
+			siteLinksInFile(fileName)
+			for n in range(0, len(fileLinkList)):
+				domainName(fileLinkList[n], firstSplit)
+				siteCheckOne(fileLinkList[n])
+				print(domain + " Connect: " + siteRequest)
+				time.sleep(3)
+
+		else:
+			print("Error")
+
+
+	elif proxy == "2":		
+
+		if method == "1":
+
+			siteLink = input("URL-address ")
+
+			if siteHttps not in siteLink:
+				site = str(siteHttps + siteLink)
+			else:
+				site = str(siteLink)
+
+			domainName(site, firstSplit)
+			siteCheckOne(site)
+			print(domain + " Connect: " + siteRequest)
+
+		elif method == "2":
+
+			global fileName
+			fileName = input("File Name: ")
+			siteLinksInFile(fileName)
+			for n in range(0, len(fileLinkList)):
+				proxyCreater.proxyGenerator()
+				domainName(fileLinkList[n], firstSplit)
+				siteCheckOne(fileLinkList[n])
+				print(domain + " Connect: " + siteRequest)
+				time.sleep(3)
+
+		else:
+			print("Error")
+
+	elif proxy == "3":
+
+		if method == "1":
+			siteLink = input("URL-address ")
+
+			if siteHttps not in siteLink:
+				site = str(siteHttps + siteLink)
+			else:
+				site = str(siteLink)
+
+			domainName(site, firstSplit)
+			siteCheckOne(site)
+			print(domain + " Connect: " + siteRequest)
+
+		elif method == "2":
+
+			global fileName
+			fileName = input("File Name: ")
+			siteLinksInFile(fileName)
+			for n in range(0, len(fileLinkList)):
+				domainName(fileLinkList[n], firstSplit)
+				siteCheckOne(fileLinkList[n])
+				print(domain + " Connect: " + siteRequest)
+				time.sleep(3)
+
+		else:
+			print("Error")
+
+	else:
+		print("Error")		
