@@ -13,6 +13,7 @@ def proxyGenerator():
 	elif str(ipv4Address1Part) == "169" and str(ipv4Address2Part) == "254" and str(ipv4Address3Part) >= "1" or str(ipv4Address3Part) <= "254":
 		print("Прокси не найден")
 	else:
+		print("Прокси найден")
 		proxyIp = str(ipv4Address1Part) + str(ipv4Address2Part) + str(ipv4Address3Part) + str(ipv4Address4Part) + str(ipv4Port)
 		os.environ["HTTPS_PROXY"] = "https://%s/" % proxyIp
-		return os.environ["HTTPS_PROXY"]
+		

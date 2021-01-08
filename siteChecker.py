@@ -49,7 +49,7 @@ def siteLinksInFile(a):
 	fileLinkList = fileRead.split(" ")
 	fileLinkList = [line.rstrip("\n") for line in fileLinkList]
 	fileOpen.close()
-	print("fix 1 func " + str(fileLinkList))
+	print(str(fileLinkList))
 	return fileLinkList
 def main():
 	if proxy == "1":
@@ -82,7 +82,6 @@ def main():
 
 		elif method == "2":
 
-			global fileName
 			fileName = input("File Name: ")
 			siteLinksInFile(fileName)
 			for n in range(0, len(fileLinkList)):
@@ -112,7 +111,6 @@ def main():
 
 		elif method == "2":
 
-			global fileName
 			fileName = input("File Name: ")
 			siteLinksInFile(fileName)
 			for n in range(0, len(fileLinkList)):
@@ -141,7 +139,6 @@ def main():
 
 		elif method == "2":
 
-			global fileName
 			fileName = input("File Name: ")
 			siteLinksInFile(fileName)
 			for n in range(0, len(fileLinkList)):
@@ -154,4 +151,5 @@ def main():
 			print("Error")
 
 	else:
-		print("Error")		
+		print("Error")
+main()
